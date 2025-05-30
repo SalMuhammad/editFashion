@@ -1,85 +1,145 @@
 <html lang="en">
- <head>
+<head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>Outfit.Gham</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- ✅ html2canvas CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
-   @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
-   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
   </style>
- </head>
- <body>
+</head>
+<body class="bg-gray-100 p-4">
 
-  <div class="bg-white flex justify-center min-h-screen">
-
-    <div id="captureArea">
-      <div class="wadah relative bg-gray-500 max-w-sm h-[512px]">
-      <img src="artis.png" alt="" class="absolute top-0 left-0 right-0  bottom-0 z-0 translate-x-20">
-      <div class="relative h=[90%] scale-[.85] anak -top-8 left-[3px] bg-white rounded-l-lg font-bold flex flex-col justify-between p-4 w-2/5 max-w-[40%] border border-gray-300" style="box-shadow: inset 0 0 20px #d1d1d1;">
-        <div>
-        <h1 class="font-orbitron text-[14px] text-black uppercase tracking-widest mb-3" style="letter-spacing: 0.15em;">
-          OUTFIT.GHAM_
-        </h1>
-        <div class="space-y-4">
-          <!-- T-shirt -->
-          <div class="bg-gray-400 rounded-md">
-            <!-- <img alt="Brown T-shirt front view" class="aspect-square w-full h-auto object-cover rounded" src="https://storage.googleapis.com/a1aa/image/f5ebd548-375a-46e4-1bdb-1b1895681aea.jpg"/> -->
-            <img alt="Brown T-shirt front view" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
-            <p class="font-montserrat text-[12px] text-black uppercas p-1e text-center p-[2px]" style="letter-spacing: 0.05em;">
-              RP 79.900
-            </p>
-          </div>
-          <!-- Shorts -->
-          <div class="bg-gray-400 rounded-md">
-            <img alt="Brown T-shirt front view" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
-
-          <!-- <img alt="Beige shorts front view" class="aspect-square w-full h-auto object-cover rounded" src="https://storage.googleapis.com/a1aa/image/ba6ad228-69b1-4ec6-7507-5f723b80d79f.jpg"/> -->
-          <p class="font-montserrat text-[12px] text-black uppercase text-center p-[2px]" style="letter-spacing: 0.05em;">
-            RP 99.000
-          </p>
-          </div>
-          <!-- Shoes -->
-          <div class="bg-gray-400 rounded-md">
-            <img alt="Brown T-shirt front view" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
-
-          <!-- <img alt="Sneakers side view" class="aspect-square w-full h-auto object-cover rounded" src="https://storage.googleapis.com/a1aa/image/0b8f4909-4d3d-487d-6833-3a280a5dabe2.jpg"/> -->
-          <p class="font-montserrat text-[12px] text-black uppercase text-center p-[2px]" style="letter-spacing: 0.05em;">
-            RP 147.000
-          </p>
-          </div>
-        </div>
-        </div>
-        <p class="font-montserrat text-[11px] text-black uppercase mt-4" style="letter-spacing: 0.1em;">
-        LINK DI BIO NO - 233
-        </p>
+  <!-- Form -->
+  <div id="form" class="mb-6 space-y-4">
+    <form>
+      <div>
+        <label>
+          Masukan Gambar Background:
+          <input type="file" onchange="updateImage(this, 'begron')">
+        </label>
       </div>
+
+      <div>
+        <label>
+          Atasan:
+          <input type="file" onchange="updateImage(this, 'atasan')">
+        </label>
+        <label>
+          Harga Atasan:
+          <input type="number" id="harga-atasan" oninput="updateHarga('harga-atasan', 'label-atasan')">
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Celana:
+          <input type="file" onchange="updateImage(this, 'celana')">
+        </label>
+        <label>
+          Harga Celana:
+          <input type="number" id="harga-celana" oninput="updateHarga('harga-celana', 'label-celana')">
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Sepatu:
+          <input type="file" onchange="updateImage(this, 'sepatu')">
+        </label>
+        <label>
+          Harga Sepatu:
+          <input type="number" id="harga-sepatu" oninput="updateHarga('harga-sepatu', 'label-sepatu')">
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <!-- Area Preview dan Download -->
+  <div class="bg-white flex justify-center">
+    <div id="captureArea">
+      <div class="relative bg-gray-500 max-w-sm h-[512px]">
+        <!-- Background -->
+        <img id="begron" src="artis.png" alt="" class="absolute top-0 left-0 right-0 bottom-0 z-0 translate-x-20"/>
+
+        <!-- Sidebar Produk -->
+        <div class="relative h-[90%] scale-[.85] left-[3px] bg-white rounded-l-lg font-bold flex flex-col justify-between p-4 w-2/5 max-w-[40%] border border-gray-300 z-10" style="box-shadow: inset 0 0 20px #d1d1d1;">
+          <div>
+            <h1 class="font-orbitron text-[14px] text-black uppercase tracking-widest mb-3">
+              OUTFIT.GHAM_
+            </h1>
+            <div class="space-y-4">
+              <!-- Atasan -->
+              <div class="bg-gray-400 rounded-md">
+                <img id="atasan" alt="atasan" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
+                <p id="label-atasan" class="font-montserrat text-[12px] text-black uppercase text-center p-[2px]">
+                  RP 79.900
+                </p>
+              </div>
+              <!-- Celana -->
+              <div class="bg-gray-400 rounded-md">
+                <img id="celana" alt="celana" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
+                <p id="label-celana" class="font-montserrat text-[12px] text-black uppercase text-center p-[2px]">
+                  RP 99.000
+                </p>
+              </div>
+              <!-- Sepatu -->
+              <div class="bg-gray-400 rounded-md">
+                <img id="sepatu" alt="sepatu" class="aspect-square w-full h-auto object-cover rounded" src="gg.png"/>
+                <p id="label-sepatu" class="font-montserrat text-[12px] text-black uppercase text-center p-[2px]">
+                  RP 147.000
+                </p>
+              </div>
+            </div>
+          </div>
+          <p class="font-montserrat text-[11px] text-black uppercase mt-4">
+            LINK DI BIO NO - 233
+          </p>
+        </div>
       </div>
     </div>
   </div>
-    <!-- Tombol Unduh -->
-    <button id="downloadBtn" class="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+
+  <!-- Tombol Unduh -->
+  <div class="mt-4 text-center">
+    <button id="downloadBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
       Download sebagai Gambar
     </button>
   </div>
 
+  <!-- Script -->
+  <script>
+    // Ganti gambar
+    function updateImage(input, id) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById(id).src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
 
- <!-- ✅ Script: Render & Download -->
- <script>
-   $('#downloadBtn').on('click', function () {
-     html2canvas(document.querySelector("#captureArea")).then(canvas => {
-       const link = document.createElement("a");
-       link.download = "hasil-render.png";
-       link.href = canvas.toDataURL("image/png");
-       link.click();
-     });
-   });
- </script>
- </body>
+    // Ganti harga
+    function updateHarga(inputId, labelId) {
+      const value = document.getElementById(inputId).value;
+      document.getElementById(labelId).textContent = value ? `RP ${parseInt(value).toLocaleString("id-ID")}` : '';
+    }
+
+    // Download gambar
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+      html2canvas(document.querySelector("#captureArea")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "outfit-gham.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    });
+  </script>
+</body>
 </html>
