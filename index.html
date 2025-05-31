@@ -20,7 +20,7 @@
     <div id="captureArea">
       <div class="relative bg-gray-500 max-w-sm h-[482px] overflow-hidden">
         <!-- Background -->
-        <img id="begron" src="artis.png" alt="" class="absolute top-0 left-0 right-0 bottom-0 z-0 translate-x-20 h-[552px]"/>
+        <img id="begron" src="artis.png" alt="" class="absolute  z-0 h-[482px]"/>
 
         <!-- Sidebar Produk -->
         <div class="relative -top-6 h-[110%] scale-[.85] left-[3px] bg-white rounded-l-lg font-bold flex flex-col justify-between p-4 w-2/5 max-w-[40%] border border-gray-300 z-10" style="box-shadow: inset 0 0 20px #d1d1d1;">
@@ -73,7 +73,7 @@
   <!-- Form -->
   <div id="form" class="mb-6 space-y-4 hi">
     <form>
-
+      <input min="-100" max="100" id="geser-gambar" type="range" class="w-full">
       <div>
         <label class="cursor-pointer inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
           Model Artis:
@@ -120,6 +120,9 @@
 
   <!-- Script -->
   <script>
+    $('#geser-gambar').on('input', function() {
+      $('#begron').css('transform', `translate(${this.value}px)`)
+    })
     // Ganti gambar
     function updateImage(input, id) {
       if (input.files && input.files[0]) {
