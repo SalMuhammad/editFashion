@@ -22,6 +22,7 @@
 
         <!-- Background -->
         <img id="begron" src="artis.png" alt="" class="absolute  z-0 h-[482px] max-w-none object-fit"/>
+        <img id="begron" src="contoh1.png" alt="" class="absolute opacity  z-0 w-[100%] max-w-none object-fit"/>
 
         <div class="absolute text-white border-spacing-2 border-2  right-2 top-2 text-right shadow-sm font-extrabold p-1 rounded-md">
           link bion <br> no: 
@@ -32,7 +33,7 @@
         <div class="relative -top-9 h-[115%] scale-[.85] left-[3px] bg-white font-bold flex flex-col justify-between p-2 w-2/4 max-w-[41%] border rounded-xl overflow-hidden border-gray-300 z-10"
      style="box-shadow: inset 0 0 20px #d1d1d1;">
 
-          <div class="">
+          <div class="p-1">
             <h1 class="font-orbitron text-[14px] text-black uppercase tracking-widest mb-3">
               Dovian
             </h1>
@@ -60,10 +61,10 @@
               </div>
             </div>
           </div>
-          <!-- <p id="kode-produk" class="font-montserrat text-[11px] text-black uppercase mt-1">
-            LINK DI BIO NO - <span class="kode-produk">123</span>
+          <p id="kode-produk" class="font-montserrat text-[11px] text-black uppercase mt-1">
+            LINK DI BIO NO - <span class="kode-produk font-bold">123</span>
             <br>
-          </p> -->
+          </p>
         </div>
       </div>
     </div>
@@ -127,6 +128,7 @@
 
   <!-- Script -->
   <script>
+
     $('#geser-gambar').on('input', function() {
       $('#begron').css('transform', `translate(${this.value}px)`)
     })
@@ -161,7 +163,7 @@
     function updateKodeProduk() {
   const input = document.getElementById("kode-produk-input").value;
   document.querySelectorAll("#captureArea .kode-produk").forEach(el => {
-    el.textContent = input ? `L${input.toUpperCase()}` : "";
+    el.textContent = input ? `${input}` : "";
   });
 }
 
