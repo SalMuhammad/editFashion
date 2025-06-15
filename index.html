@@ -16,8 +16,8 @@
 <body class="py-4">
   <nav id="main-nav">
     <div class="hidden transition duration-100 fixed top-8 left-1 right-1 justify-between items-center z-50 capitalize gap-0">
-    <a href="" class="text-white p-3 bg-blue-800 rounded-full shadow-lg">outfit</a>
-    <a href="" class="text-white bg-blue-700 p-3 rounded-full shadow-lg">couple</a>
+    <a href="" id="outfit" class="text-white p-3 bg-blue-800 rounded-full shadow-lg">outfit</a>
+    <a href="" id="kapel" class="text-white bg-blue-700 p-3 rounded-full shadow-lg">couple</a>
     <a href="" class="text-white bg-blue-700 p-3 rounded-full shadow-lg">lainnya</a>
     <a href="" class="text-white bg-blue-700 p-3 rounded-full shadow-lg">lainnya</a>
     </div>
@@ -28,7 +28,7 @@
 
 
 
-    <div class="bg-black p-4 ">
+    <div class="bg-black p-4 elemen-kapel hidden">
       <!-- Perbesar max-w dan hilangkan aspect-ratio, ganti dengan height tetap -->
       <main class="max-w-md mx-auto grid gap-1" style="grid-template-columns: 1.3fr 2fr;">
        <!-- Top Left -->
@@ -89,7 +89,7 @@
 
 
 
-    <div id="captureArea" class="hidden">
+    <div id="captureArea" class=" elemen-outfit">
       <div class="relative bg-gray-500 max-w-sm h-[500px] overflow-hidden">
 
         <!-- Background -->
