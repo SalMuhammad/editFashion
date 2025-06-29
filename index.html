@@ -29,7 +29,7 @@
     
       <div id="elemen-kapel" class="bg-black py-2 px-1 h-full w-full">
         <main class="max-w-md mx-auto grid gap-2 h-full" style="grid-template-columns: 1fr 2fr;">
-          <!-- Top Left -->
+          <!-- Top Left --> 
           <section id="desk-cowo" class="bg-white rounded-xl flex flex-col justify-center items-center p- relative h-full">
             <p class="bio-kapel absolute top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[12px] font-normal px-2 py-[2px] rounded-md font-sans kode-produk whitespace-nowrap" id="bio-cowo">
               LINK NO. 100
@@ -70,21 +70,6 @@
           </section>
         </main>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div id="elemen-outfit" class="hidden">
         <div class="relative bg-gray-500 max-w-sm h-[500px] overflow-hidden">
@@ -135,8 +120,6 @@
               <br>
             </p>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -288,22 +271,22 @@ function toggleNav() {
 }
 
 
-// Saat tombol "couple" diklik
 $('#kapel').on('click', function(e) {
   e.preventDefault();
-  $('#captureArea').addClass('hidden');
-  $('#form').addClass('hidden'); // Sembunyikan form utama
+  $('#captureArea').removeClass('hidden');
+  $('#form').addClass('hidden');
   $('#elemen-kapel').removeClass('hidden');
-  $('#form-kapel').removeClass('hidden'); // Tampilkan form kapel
+  $('#elemen-outfit').addClass('hidden');
+  $('#form-kapel').removeClass('hidden');
 });
 
-// Saat tombol "outfit" diklik
 $('#outfit').on('click', function(e) {
   e.preventDefault();
   $('#captureArea').removeClass('hidden');
-  $('#form').removeClass('hidden'); // Tampilkan form utama
+  $('#form').removeClass('hidden');
   $('#elemen-kapel').addClass('hidden');
-  $('#form-kapel').addClass('hidden'); // Sembunyikan form kapel
+  $('#elemen-outfit').removeClass('hidden');
+  $('#form-kapel').addClass('hidden');
 });
 
   </script>
