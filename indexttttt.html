@@ -2,45 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Render & Download Elemen jadi Gambar</title>
-  
-  <!-- ✅ Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React + Tailwind CDN Template</title>
+  <!-- Tailwind CSS CDN -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- ✅ jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- ✅ html2canvas CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- React & ReactDOM CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-  <!-- Elemen yang akan dirender -->
-   <div class="">
 
-     <div id="captureArea" class="p-6 rounded shadow-md text-center w-[290px] aspect-[9/16] bg-gray-300">
-       <h2 class="text-xl font-bold mb-4">Area yang akan jadi gambar</h2> 
-       <img src="https://via.placeholder.com/150" alt="Contoh Gambar" class="mx-auto mb-4">
-       <p class="text-gray-700">Teks ini juga akan masuk ke dalam gambar.</p>
-      </div>
-      
-      <br>
-      <!-- Tombol Unduh -->
-      <button id="downloadBtn" class="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Download sebagai Gambar
-      </button>
-    </div>
+  <div id="root"></div>
 
-  <!-- ✅ Script: Render & Download -->
-  <script>
-    $('#downloadBtn').on('click', function () {
-      html2canvas(document.querySelector("#captureArea")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "hasil-render.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-      });
-    });
+  <!-- React and ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Babel for JSX support -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Your React code -->
+  <script type="text/babel">
+    const App = () => {
+      return <h1 class="">Hello, React via CDN!</h1>;
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 
 </body>
