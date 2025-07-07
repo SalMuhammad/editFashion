@@ -159,8 +159,8 @@
                 class="text-1xl bg-blue-500 font-black text-white flex-1 border-box p-4 flex flex-col justify-between "
                 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
 
-                <p class="text-sm capitalize font-black">link di bio <br>
-                  No <span id="no-bio-sidebar">100</span>
+                <p id="no-bio-sidebar" class="text-sm capitalize font-black">link di bio
+                  No <span>100</span>
                 </p>
 
 
@@ -178,7 +178,7 @@
 
               <div id="produk" class="flex-[3] flex items-center justify-center overflow-hidden h-full">
                 <div class="w-full h-full aspect-square flex items-center justify-center overflow-hidden rounded-lg">
-                  <img src="celana.png" alt="" class="w-full h-full object-cover object-center" />
+                  <img src="celana.png" id="gambar-lide" alt="" class="w-full h-full object-cover object-center" />
                 </div>
               </div>
             </div>
@@ -209,7 +209,7 @@
 
 
   <!-- Form FORM KAPEL -->
-  <div id="form-kapel" class="mb-6 space-y-4 hidden  form-ell">
+  <div id="form-kapel" class="mb-6 space-y-4 hidden form-ell">
     <form>
       <div>
         <label class="cursor-pointer inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -291,126 +291,44 @@
   </div>
 
 
-  <div id="form-side " class="form-ell">
-    <form action="">
+  <div id="form-side" class="mb-6 space-y-4 form-ell">
+    <form>
 
-      <input type="color">
+      <input type="color" id="bg-lide">
+
+      <input type="text" id="kode-bio-lide-input" placeholder="nomor link bio"
+        oninput="updateKodeProduk(this.value, '#no-bio-sidebar')">
+      <div>
+
+      <input type="text" id="kode-bio-lide-input" placeholder="merek"
+        oninput="updateMerek(this.value, '#merek-side')">
+      <div>
+
+        <label>
+          <input type="number" id="harga-side-input" oninput="updateHarga('harga-side-input', 'harga-side')"
+            placeholder="harga">
+        </label> <br>
+
+
+
+        <label class="cursor-pointer inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+          pilih gambar:
+          <input class="hidden" type="file" onchange="updateImage(this, 'gambar-lide')">
+        </label>
+
+
+
+
     </form>
   </div>
 
-  <div id="lainnya " class="form-ell" > lainya</div>
+  <div id="lainnya " class="form-ell hidden"> lainya</div>
 
-  <a href="td.html">link</a>
+  <!-- <a href="td.html">link</a> -->
 
   <!-- Script -->
   <!-- ... (HTML di atas tetap, hanya bagian script yang diubah) ... -->
-  <script>
-    function toggleNav() {
-      var navDiv = document.querySelector('#main-nav > div');
-      navDiv.classList.toggle('hidden');
-    }
-
-    // Ambil semua tombol <a> di dalam #main-nav
-
-
-
-
-    document.querySelectorAll('#main-nav a').forEach(function (link) {
-      const sectionss = document.querySelectorAll('.capture-section');
-      const formEll = document.querySelectorAll('.form-ell');
-      // console.log(formEll);
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-
-        const idLink = link.id; // misal: "outfit"
-        sectionss.forEach(function (ell) {
-          const idSection = ell.id.replace('section-', ''); // misal: "outfit"
-          
-          if (idLink === idSection) {
-            ell.classList.remove('hidden'); // tampilkan section yang sesuai
-          } else {
-            ell.classList.add('hidden'); // sembunyikan yang lain
-          }
-        });
-        
-        formEll.forEach(function (ella) {
-          const idForm = ella.id.replace('form-', ''); // misal: "outfit"
-          // console.log(idLink === idForm);
-
-          if (idLink === idForm) {
-            ella.classList.remove('hidden'); // tampilkan section yang sesuai
-          } else {
-            ella.classList.add('hidden'); // sembunyikan yang lain
-          }
-        });
-
-        
-        document.querySelector('#main-nav > div').classList.add('hidden');
-      });
-    });
-
-
-
-
-
-    // ... (script lain tetap sama) ...
-    $('#geser-gambar').on('input', function () {
-      $('#begron').css('transform', `translate(${this.value}px)`)
-    })
-    // Ganti gambar
-    function updateImage(input, id) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById(id).src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    // Ganti harga
-    function updateHarga(inputId, labelId) {
-      const value = document.getElementById(inputId).value;
-      document.getElementById(labelId).textContent = value ? `RP ${parseInt(value).toLocaleString("id-ID")}` : '';
-    }
-
-    // Download gambar
-    document.getElementById('downloadBtn').addEventListener('click', function () {
-      html2canvas(document.querySelector("#captureArea")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "outfit-gham.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-      });
-    });
-
-    // Update kode produk
-    function updateKodeProduk(input, bio) {
-      document.querySelectorAll(bio).forEach(el => {
-        el.textContent = input ? `LINK NO. ${input}` : "LINK NO.";
-      });
-    }
-
-
-
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // Cari input color di dalam #form-side
-      const colorInput = document.querySelector('#form-side input[type="color"]');
-      // Cari elemen dengan id 'lide'
-      const lide = document.getElementById('lide');
-
-      if (colorInput && lide) {
-        colorInput.addEventListener('input', function (event) {
-          lide.style.backgroundColor = event.target.value;
-        });
-      }
-    });
-
-
-
-  </script>
+  <script src="jj.js"></script>
 </body>
 
 </html>
