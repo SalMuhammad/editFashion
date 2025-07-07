@@ -25,7 +25,7 @@ document.querySelectorAll('#main-nav a').forEach(function (link) {
     
     formEll.forEach(function (ella) {
       const idForm = ella.id.replace('form-', ''); // misal: "outfit"
-      // console.log(idLink === idForm);
+      console.log(idLink === idForm);
 
       if (idLink === idForm) {
         ella.classList.remove('hidden'); // tampilkan section yang sesuai
