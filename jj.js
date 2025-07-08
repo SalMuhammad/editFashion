@@ -79,7 +79,7 @@ document.getElementById('downloadBtn').addEventListener('click', function () {
 // Update kode produk
 function updateKodeProduk(input, bio) {
   document.querySelectorAll(bio).forEach(el => {
-    el.textContent = input ? `LINK BIO NO. ${input}` : "LINK NO.";
+    el.textContent = input ? `LINK BIO NO. \n ${input}` : "LINK NO.";
   });
 }
 function updateMerek(input, bio) {
