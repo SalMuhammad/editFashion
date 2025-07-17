@@ -99,23 +99,40 @@ function updateMerek(input, bio) {
 
 
 
+  window.addEventListener("DOMContentLoaded", () => {
+    const img = document.getElementById("gambar-lide");
+    const target = document.getElementById("lide");
 
+    // Buat canvas tersembunyi
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
 
+    // Render gambar ke canvas setelah gambar siap
+    img.onload = () => {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+    };
 
+    // Kalau gambar udah ke-load sebelum JS ini dijalankan
+    if (img.complete) {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+    }
 
-// bagian eyedroper contek warna
-const kotakWarna= document.querySelector('.elemen-warna')
-// kotakWarna.style.background = 'red'
-async function pickColor() {
-  if (!window.EyeDropper) {
-    alert("Browser kamu belum mendukung EyeDropper API.");
-    return;
-  }
-  try {
-    const picker = new EyeDropper();
-    const result = await picker.open();
-    kotakWarna.style.background = result.sRGBHex;
-  } catch (err) {
-    console.log("Eyedropper dibatalkan");
-  }
-}
+    // Ambil warna saat gambar diklik
+    img.addEventListener("click", function (e) {
+      const rect = img.getBoundingClientRect();
+      const scaleX = img.naturalWidth / rect.width;
+      const scaleY = img.naturalHeight / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      const pixel = ctx.getImageData(x, y, 1, 1).data;
+      const hex = "#" + [...pixel].slice(0, 3).map(v => v.toString(16).padStart(2, '0')).join('');
+
+      // Tempel warna ke elemen dengan id=lide
+      target.style.backgroundColor = hex;
+    });
+  });
