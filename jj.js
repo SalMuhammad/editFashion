@@ -93,7 +93,29 @@ function updateMerek(input, bio) {
 
 
 
-document.getElementById('bg-lide').oninput = function() {
-document.getElementById('lide').style.backgroundColor = this.value;
-};
 
+
+
+
+
+
+
+
+
+
+// bagian eyedroper contek warna
+const kotakWarna= document.querySelector('.elemen-warna')
+// kotakWarna.style.background = 'red'
+async function pickColor() {
+  if (!window.EyeDropper) {
+    alert("Browser kamu belum mendukung EyeDropper API.");
+    return;
+  }
+  try {
+    const picker = new EyeDropper();
+    const result = await picker.open();
+    kotakWarna.style.background = result.sRGBHex;
+  } catch (err) {
+    console.log("Eyedropper dibatalkan");
+  }
+}

@@ -155,27 +155,33 @@
         <div id="section-side-samping" class="hidde capture-section aspect-[4/5] w-full max-w-[432px] max-h-[540px]">
           <div class="w-full h-full bg-white border shadow-lg">
             <div class="flex justify-between bg-slate-500/15 h-full">
-              <div id="lide"
-                class="text-1xl bg-blue-500 font-black text-white flex-1 border-box py-4 px-2 flex flex-col justify-between "
-                style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+              <div class="elemen-warna text-1xl bg-blue-500 font-black text-white flex-2 border-box py-4 pt-[120px] pb-12 flex flex-col justify-between "
+                style="font-family: Verdana, Geneva, Tahoma, sans-serif;"  id="lide">
 
-                <p id="no-bio-sidebar" class="text-sm capitalize font-black">link di bio
-                  No <span>100</span>
-                </p>
 
-                <div id="logo">
-                  <div class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center mx-auto">
-                    <img src="logo-outfil.jpg" class="w-full h-full object-cover object-center" alt="">
-                  </div>
-                  <span class="block mt-3 border-2 w-full bor"></span>
-                  <p class="text-[15px] uppercase pt-2" id="merek-side">Arrifan</p>
-                  <p class="capitalize text-[12px]  font-normal no-warap">Rp. <span id="harga-side" class="no-wrap">120.000</span></p>
+
+                <div class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center mx-auto">
+                  <img src="logo-outfil.jpg" class="w-full h-full object-cover object-center" alt="">
                 </div>
 
-                <p class="text-[8px] bottom">NOTE: HARGA SAAT UPLOAD</p>
+
+
+               
+
+                <div id="logo">
+                  <p class="text-[15px] uppercase pt-2" id="merek-side">Arrifan</p>
+                  <p class="capitalize text-[12px]  font-normal no-warap">Rp. <span id="harga-side" class="no-wrap">120.000</span></p>
+                  <span class="block mt-3 border w-full mx-auto"></span>
+
+                  <p id="no-bio-sidebar" class="lowercase inline-block px-2 rounded-md text-xs bg-white text-black mt-8 font-medium text-nowrap mx-2">link bio
+                    No <span>100</span>
+                  </p>
+                </div>
+
+                <p class="text-[8px] bottom mx-2">NOTE: HARGA <br> SAAT UPLOAD</p>
               </div>
 
-              <div id="produk" class="flex-[2] flex items-center justify-center overflow-hidden h-full">
+              <div id="produk" class="flex-[3] flex items-center justify-center overflow-hidden h-full">
                 <div class="w-full h-full aspect-square flex items-center justify-center overflow-hidden bg-white">
                   <img src="celana.png" id="gambar-lide" alt="" class="w-[90%]  object-cover object-center" />
                 </div>
@@ -297,31 +303,41 @@
   <div id="form-side-samping" class="mb-6 space-y-4 form-ell">
     <form>
 
-      <input type="color" id="bg-lide">
+            <!-- Ubah type button -->
+            <button type="button" onclick="pickColor()" class="mt-2  bg-gray-600 text-white rounded hover:bg-blue-700">
+              Contek Warna
+            </button>
+            <br>
 
+
+      <label class="cursor-pointer inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+        pilih gambar:
+        <input class="hidden" type="file" onchange="updateImage(this, 'gambar-lide')">
+      </label> <br>
+
+
+      <input type="text" id="kode-bio-lide-input2" placeholder="merek"
+      oninput="updateMerek(this.value, '#merek-side')">
+      <br>
+
+
+      <label>
+        <input type="number" id="harga-side-input" oninput="updateHarga('harga-side-input', 'harga-side')"
+          placeholder="harga">
+      </label> <br>
+  
+
+  
       <input type="text" id="kode-bio-lide-input" placeholder="nomor link bio"
         oninput="updateKodeProduk(this.value, '#no-bio-sidebar')">
-      <div>
+      
+  
 
-      <input type="text" id="kode-bio-lide-input" placeholder="merek"
-        oninput="updateMerek(this.value, '#merek-side')">
-      <div>
-
-        <label>
-          <input type="number" id="harga-side-input" oninput="updateHarga('harga-side-input', 'harga-side')"
-            placeholder="harga">
-        </label> <br>
-
-
-
-        <label class="cursor-pointer inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-          pilih gambar:
-          <input class="hidden" type="file" onchange="updateImage(this, 'gambar-lide')">
-        </label>
-
-
-
-
+     
+  
+      
+  
+     
     </form>
   </div>
 

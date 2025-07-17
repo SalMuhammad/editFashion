@@ -1,102 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Color Picker + Eyedropper from Image</title>
-  <link rel="stylesheet" href="https://unpkg.com/coloris/dist/coloris.min.css"/>
-  <style>
-    #preview {
-      width: 200px;
-      height: 80px;
-      margin: 20px 0;
-      background: #fff;
-      border: 1px solid #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #image-container {
-      position: relative;
-      display: inline-block;
-    }
-    #image-canvas {
-      display: none;
-    }
-    #pick-color-btn {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 6px 12px;
-      background: #3182ce;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
-</head>
+<html>
 <body>
-  <input type="text" id="color-picker" value="#ffffff" />
-  <button id="pick-color-btn">Contek warna dari gambar</button>
-  <div id="preview">Preview</div>
-  <div id="image-container">
-    <img id="source-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Sample" style="max-width:300px;cursor:crosshair;">
-    <canvas id="image-canvas"></canvas>
-  </div>
+  <img src="celana.png" width="200px" alt="">
 
-  <script src="https://unpkg.com/coloris/dist/coloris.min.js"></script>
-  <script>
-    // Coloris setup
-    Coloris({
-      el: '#color-picker',
-      theme: 'large',
-      swatches: [
-        '#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51',
-        '#d7263d', '#a2d5c6', '#077b8a', '#5c3c92', '#ffb400'
-      ]
-    });
+  <div class="elemen-warna" style="padding: 100px;">warba</div>
 
-    // Update preview on color change
-    document.getElementById('color-picker').addEventListener('input', function(e) {
-      document.getElementById('preview').style.background = e.target.value;
-    });
+<button onclick="pickColor()">Contek Warna</button>
+<div id="result" style="margin-top:10px;"></div>
 
-    // Eyedropper dari gambar
-    const img = document.getElementById('source-image');
-    const canvas = document.getElementById('image-canvas');
-    const ctx = canvas.getContext('2d');
-    let picking = false;
+<script>
 
-    document.getElementById('pick-color-btn').addEventListener('click', function() {
-      picking = true;
-      img.style.outline = '2px solid #3182ce';
-      alert('Klik pada gambar untuk memilih warna!');
-    });
-
-    img.addEventListener('click', function(e) {
-      if (!picking) return;
-      // Resize canvas to image
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-
-      // Get click position relative to image
-      const rect = img.getBoundingClientRect();
-      const x = Math.round((e.clientX - rect.left) * (img.naturalWidth / rect.width));
-      const y = Math.round((e.clientY - rect.top) * (img.naturalHeight / rect.height));
-
-      const pixel = ctx.getImageData(x, y, 1, 1).data;
-      const hex = rgbToHex(pixel[0], pixel[1], pixel[2]);
-      document.getElementById('color-picker').value = hex;
-      document.getElementById('preview').style.background = hex;
-      Coloris.setColor('#color-picker', hex);
-
-      picking = false;
-      img.style.outline = '';
-    });
-
-    function rgbToHex(r, g, b) {
-      return "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+  const kotakWarna= document.querySelector('.elemen-warna')
+  kotakWarna.style.background = 'red'
+  async function pickColor() {
+    if (!window.EyeDropper) {
+      alert("Browser kamu belum mendukung EyeDropper API.");
+      return;
     }
-  </script>
+    try {
+      const picker = new EyeDropper();
+      const result = await picker.open();
+      kotakWarna.style.background = result.sRGBHex;
+      document.getElementById("result").textContent = "Warna: " + result.sRGBHex;
+    } catch (err) {
+      console.log("Eyedropper dibatalkan");
+    }
+  }
+</script>
+
 </body>
 </html>
