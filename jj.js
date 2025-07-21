@@ -67,14 +67,14 @@ function updateHarga(inputId, labelId) {
 }
 
 // Download gambar
-document.getElementById('downloadBtn').addEventListener('click', function () {
-  html2canvas(document.querySelector("#captureArea")).then(canvas => {
-    const link = document.createElement("a");
-    link.download = "outfit-gham.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  });
-});
+// document.getElementById('downloadBtn').addEventListener('click', function () {
+//   html2canvas(document.querySelector("#captureArea")).then(canvas => {
+//     const link = document.createElement("a");
+//     link.download = "outfit-gham.png";
+//     link.href = canvas.toDataURL("image/png");
+//     link.click();
+//   });
+// });
 
 // Update kode produk
 function updateKodeProduk(input, bio) {
